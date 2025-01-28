@@ -79,7 +79,7 @@ add inventory.ini add this configuration here
 #[all:vars]
 #ansible_ssh_user=mohammad
 #ansible_become=true
-#ansible_become_password='75@zBYbxIWcJzkM'
+#ansible_become_password='add your password'
 
 # This inventory file is for a single-node Kubernetes cluster with etcd running on the same node as the control plane
 

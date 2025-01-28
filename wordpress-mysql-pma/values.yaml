@@ -1,0 +1,53 @@
+wordpress:
+  name: wordpress
+  image: wordpress:latest
+  internalPort: 80
+  service:
+    type: ClusterIP
+    externalPort: 80
+    name: deployment-wordpress
+  ingress:
+    enabled: true
+    host: "nl-rv.maxtld.com"
+    path: "/wordpress"
+    annotations: {}
+  db:
+    host: mysql  # Ensure this matches the MySQL service name
+    name: wordpress
+    user: wordpress_user  # Ensure this matches the MySQL user name
+    password: "wordpresspassword"
+  wordpressPassword: "wordpressadminpassword"
+
+mysql:
+  name: mysql
+  image:
+    repository: mysql
+    tag: latest
+  internalPort: 3306
+  service:
+    type: ClusterIP
+    externalPort: 3306
+    name: deployment-mysql
+  rootPassword: "rootpassword"
+  dbName: "wordpress"
+  ingress:
+    enabled: true
+    host: "nl-rv.maxtld.com"
+    path: "/dbadmin"
+    annotations: {}
+
+phpmyadmin:
+  name: phpmyadmin
+  image:
+    repository: phpmyadmin/phpmyadmin
+    tag: latest
+  internalPort: 80
+  service:
+    name: deployment-phpmyadmin
+    externalPort: 80
+  ingress:
+    enabled: true
+    host: "nl-rv.maxtld.com"
+    path: "/dbadmin"
+    annotations: {}
+

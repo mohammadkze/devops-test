@@ -1,0 +1,20 @@
+{{- if .Values.phpmyadmin.ingress.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Values.phpmyadmin.name }}-ingress
+  annotations: {{- toYaml .Values.phpmyadmin.ingress.annotations | nindent 4 }}
+spec:
+  rules:
+  - host: {{ .Values.phpmyadmin.ingress.host }}
+    http:
+      paths:
+      - path: {{ .Values.phpmyadmin.ingress.path }}
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ .Values.phpmyadmin.name }}
+            port:
+              number: 80
+{{- end }}
+

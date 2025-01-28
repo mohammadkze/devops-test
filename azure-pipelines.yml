@@ -1,0 +1,17 @@
+trigger:
+- master
+
+pr:
+- '*'
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+- stage: deploy
+  jobs:
+  - job: deploy-app
+    steps:
+    - script: |
+        helm install wordpress-mysql-pma ./wordpress-mysql-pma
+      displayName: 'deployment wordpress mysql phpmyadmin done'

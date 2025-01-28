@@ -1,0 +1,6 @@
+apiVersion: v2
+name: wordpress-chart
+description: A Helm chart for WordPress with MySQL and PhpMyAdmin
+version: 0.1.0
+appVersion: "5.8"
+
